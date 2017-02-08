@@ -1,0 +1,99 @@
+<html>
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<title>Blackjack</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" >
+</head>
+  <body>
+<style type="text/css">
+body {background-image:url('images/spade2.jpg');
+background-repeat:repeat-x;
+background-position:right-bottom;
+margin-top:128px;}
+</style>
+<div id="doc" class="yui-t7">
+  <div id="hd">
+    <div id="header"><h1>Welcome to Blackjack</a></h1></div>
+ <h2>The key is to reach the closest number to 21 but if you pass it you lose! </h2>
+     <h3>Goodluck!</h3>
+</div>
+  <div id="bd">
+    <div id="yui-main">
+      <div class="yui-b">
+        <div class="yui-gc">
+          <div class="yui-u first">
+            <div class="content"><h5>Your Hand: </h5>
+
+  
+    {% for item in hand %}
+    
+    <img src="{{item.image}}"/>
+
+    {% endfor %}    <Br/>
+
+    <h5> Hand total: {{handTotal}} </h5></P>
+
+        <FORM ACTION="/Hit_Me" method="get">
+
+<INPUT TYPE=SUBMIT VALUE="Hit Me">
+</FORM>
+</P>
+
+    <FORM ACTION="/Hold" method="get">
+
+<INPUT TYPE=SUBMIT VALUE="Hold">
+</FORM>
+</P>
+
+ <a href=/newgame>New Game</a> </P>
+ <a href={{logouturl}}>Log Out</a>
+
+
+    <h5>{{dealerText}}</h5></P>
+    
+    {% for item in aiHand %}
+    
+    <img src="{{item.image}}"/>
+
+    {% endfor %}    <Br/>
+
+    <h5>{{aiTotal}}</h5></P>
+    <h5>{{gameStatus}}</h5></div>
+    
+          </div>
+
+<h5>Wins: {{wins}} </h5>
+<h5>Losses: {{losses}}</h5>
+
+<div id="ft">
+    <div id="footer"><img src="/images/tip2.jpg" /> </br>
+
+<h5>Object: Have a total that is greater than the dealer's without going over 21.</br>
+Card Values: Jacks, Queens, and Kings (all of the face cards), have a value of 10, the Ace has a value of 1 or 11 depending on what the player wants.</br>
+Terms: Hit- take a card, Stand/Hold- take no more cards 
+</br></br>
+The following tips are provided by <a href="http://www.blackjacktactics.com/blackjack/how-to-play/">Blackjack Tactics</a>, a free guide for beginners and blackjack enthusiasts.
+</h5></div>  
+          <div class="yui-u">
+            <div class="content"><h4>Member Comments</h4>
+ <form action="/submit_message" method="get">
+
+      <input type="text" name="statusText"></br></br>
+      <input type="submit" value="Post a comment">
+</form>
+<h5>   {% for M in Messages %}
+       {{M.statusMessage}} <br/>
+       {{M.date}}<br/>
+       {{M.user.email}}<br/>
+       {% endfor %}
+<h5> 
+       </div>      
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  
+</div>
+</div>
+  </body>
+</html>
